@@ -31,6 +31,7 @@ export class VendorPage {
     this.cart = Cart.getInstance();
     this.db =Database.getInstance();
     this.vendor = this.navParams.get('vendor');
+    console.log(this.vendor);
     this.getProducts(this.vendor.id);
   
   }

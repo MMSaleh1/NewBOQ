@@ -7,7 +7,9 @@
 <ion-header>
 
   <ion-navbar>
-      <img src="assets/img/small-logo.png"  class="menu-logo-img">
+      <div class=menu-img-container>
+          <img src="assets/img/logo-white.png"  class="menu-logo-img">
+        </div>
       <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
     
 
@@ -61,16 +63,17 @@
       <div class="item-name-container"  (tap)="toProduct(product)">
         <div class="item-vendor">{{product.company_name}}</div>
         <rating rating="{{product.rating}}" cCount="{{product.customerCount}}"></rating>
+        <div class="price-wrapper" *ngIf="product.price !=0" (tap)="toProduct(product)">
+          <div class="price">{{product.currentPrice}} LE</div> 
+          <div class="old-price">{{product.price}} LE </div> 
+        </div>
+        <div class="price-wrapper" *ngIf="product.price === 0" (tap)="toProduct(product)">
+          <div class="price">{{product.currentPrice}} LE</div>    
+          
+        </div>
       </div>
-      <div class="price-wrapper" *ngIf="product.price !=0" (tap)="toProduct(product)">
-        <div class="price">{{product.currentPrice}} LE</div> 
-        <div class="old-price">{{product.price}} LE </div> 
-      </div>
-      <div class="price-wrapper" *ngIf="product.price === 0" (tap)="toProduct(product)">
-        <div class="price">{{product.currentPrice}} LE</div>    
-        
-      </div>
-      <div  class="order-button" (tap)="add2Cart(product)"><div class="order-text">{{'subCatePage.add' | translate}}</div> <ion-badge mod="ios" *ngIf="getProdQuant(product.id) > 0 " color="danger">{{ getProdQuant(product.id) }}</ion-badge></div> 
+     
+      <button ion-button icon-only class="order-button" (tap)="add2Cart(product)"><ion-icon name="add"><ion-badge mod="ios" *ngIf="getProdQuant(product.id) > 0 " color="danger">{{ getProdQuant(product.id) }}</ion-badge></ion-icon></button> 
      
     </ion-item>
   </ion-list>

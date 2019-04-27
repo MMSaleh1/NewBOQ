@@ -32,7 +32,7 @@ ion-card img {
 // The "primary" color is the only required color in the map.
 
 $colors: ( 
-   primary: #3e3e3e,
+   primary: #e94d3a,
    secondary: #e94d3a,
    danger: #f15a67,
    light: #f4f4f4,
@@ -40,7 +40,7 @@ $colors: (
    pearl: #e9eaea,
    primarydark:#0081b1,
    lightdark: #d9d9d9,
-   greydark: #858585,
+   greydark: #858585c7,
    processing: #e0a018,
    golden: #f9a618,
    wight: #ffffff
@@ -184,13 +184,15 @@ $tabs-background: color($colors, primary);
 
 
  ion-navbar{
-  background-color: color($colors,wight) !important;
+  background-color: color($colors,primary) !important;
 }
 .toolbar-background-md{
-  background-color: color($colors,wight) !important;
+  background-color: color($colors,primary) !important;
+  box-shadow: 0px 0px 10px 0px grey;
 }
 .toolbar-background-ios{
-  background-color:  color($colors,wight) !important;
+  background-color:  color($colors,primary) !important;
+  box-shadow: 0px 0px 10px 0px grey;
 }
  
  ion-title {
@@ -208,11 +210,16 @@ $tabs-background: color($colors, primary);
  .menu-image {
    height: 2.6vh;
  }
- .menu-logo-img{
-  height: 4vh;
-  margin: auto;
-  display: block;
-}
+ .menu-img-container{
+   margin: auto;
+   width: 25%;
+  .menu-logo-img{
+    height: 5vh;
+    margin: auto;
+    // display: block;
+  }
+ }
+ 
  
  /*.no-scroll .scroll-content {
    overflow: hidden;
@@ -409,10 +416,10 @@ $tabs-background: color($colors, primary);
  }
 
  .toolbar-content-md{
-  display: inherit !important;
+  //display: inherit !important;
 }
 .toolbar-content-ios{
-  display: inherit;
+  //display: inherit;
 }
 
  .toolbar-title-md {
@@ -422,21 +429,28 @@ $tabs-background: color($colors, primary);
   color: #ffffff;
 }
 
+.toolbar .searchbar-md {
+  padding: 6px !important;
+}
+
 .toolbar-title-ios {
   padding: 0 12px;
   font-size: 3rem;
   font-weight: 800;
   color: #ffffff;
 }
+.toolbar .searchbar-ios {
+  padding: 6px !important;
+}
 
 
 .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default {
-  color: color($colors,primary) !important ;
+  //color: color($colors,primary) !important ;
   background-color: transparent;
 }
 
 .bar-button-default-ios, .bar-button-clear-ios-default, .bar-button-ios-default {
-  color: color($colors,primary) !important ;
+  //color: color($colors,primary) !important ;
   background-color: transparent;
 }
 

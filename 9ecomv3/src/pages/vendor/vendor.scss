@@ -14,7 +14,7 @@ page-vendor {
 
   .scroll-container{
     margin-top: 2vh;
-    height: calc(100% - 85px);
+    height: calc(100% - 9vh);
   }
   .scroll-list{
     height: 80vh;
@@ -29,20 +29,42 @@ page-vendor {
           }
         }
         .order-button{
+<<<<<<< HEAD
           width: 100%;
           background-color: color($colors,primary);
+=======
+          width: 50px;
+          background-color: #fff;
+>>>>>>> e99a10b96d961d5369742b6aab6659ff02091dd9
           color: #ffffff;
           text-align: center;
-          height: 4vh;
+          height: 50px;
+          float: right;
+          
+          ion-icon{
+            font-size: 2.6em;
+            text-align: center;
+            color: color($colors,primary);
+          }
+          
+          ion-badge {
+            position: absolute;
+            bottom: 3rem;
+            right: .3rem;
+            opacity: 0.9;
+          }
           .order-text{
             font-size: 1.2rem;
             padding-top: 1vh;
+<<<<<<< HEAD
           }
           ion-badge {
             position: absolute;
             bottom: 0.4rem;
             right: 0.8rem;
             opacity: 0.9;
+=======
+>>>>>>> e99a10b96d961d5369742b6aab6659ff02091dd9
           }
       
         }
@@ -56,7 +78,7 @@ page-vendor {
       }
       .price-wrapper{
         display: inline-block;
-        width: 37%;
+        width: 100%;
         text-align: center;
         .price {
           font-size: 1.68rem;
@@ -87,6 +109,38 @@ page-vendor {
         display: inline-block;
       }
 
+<<<<<<< HEAD
       
        
+=======
+      .scroll-list{
+        height: 100%;
+      }
+      .order-button{
+        width: 50px;
+        background-color: #fff;
+        color: #ffffff;
+        text-align: center;
+        height: 50px;
+        float: right;
+        
+        ion-icon{
+          font-size: 2.6em;
+          text-align: center;
+          color: color($colors,primary);
+        }
+        
+        ion-badge {
+          position: absolute;
+          bottom: 3rem;
+          right: .3rem;
+          opacity: 0.9;
+        }
+        .order-text{
+          font-size: 1.2rem;
+          padding-top: 1vh;
+        }
+    
+      }
+>>>>>>> e99a10b96d961d5369742b6aab6659ff02091dd9
 }
