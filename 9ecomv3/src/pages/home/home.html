@@ -7,7 +7,7 @@
 <ion-header>
   <ion-navbar (tap)="toSearchPage()">
     <div class=menu-img-container>
-      <img src="assets/img/small-logo.png"  class="menu-logo-img">
+      <img src="assets/img/logo-white.png"  class="menu-logo-img">
     </div>
     <div>
         <ion-searchbar id="input"></ion-searchbar> 
@@ -39,24 +39,50 @@
 
 
 <div>
-  <div>categories</div>
-<ion-slides #vendorSlider  dir="auto" loop="true" slidesPerView="3"  >
+  <div class="segment-header">Browse By supplier</div>
+  <ion-scroll scrollX="true" class="categoty-scroll">
+    <div class="vertical-list" *ngFor="let item of vendorSlider"  >
+      <div class="vendor-list-container"  (click)="vendor(item[0])">
+        <div class="vendor-image-container"> <img  class="vendor-image" src="{{item[0].image}}"></div>
+        <div class="vendor-name1">{{item[0].name}}</div>
+      </div>
+
+      <div class="vendor-list-container"  (click)="vendor(item[1])" >
+          <div class="vendor-image-container"> <img  class="vendor-image" src="{{item[1].image}}"></div>
+          <div class="vendor-name2">{{item[1].name}}</div>
+        </div>
+
+     
+      
+        <!-- <div class="title">{{item.name}}</div> 
+        <img class="category-slider-image" src="{{item.image}}" alt="category Image"> -->
+    </div>
+  </ion-scroll>
+<!-- <ion-slides #vendorSlider  dir="auto" loop="true" slidesPerView="3"  >
   <ion-slide *ngFor="let item of category_array" (tap)="categories(item)">
        <img class="category-slider-image" src="{{item.image}}" alt="category Image">
-       <!-- <div class="title">{{item.name}}</div> -->
+        <div class="title">{{item.name}}</div> 
   </ion-slide>
-</ion-slides>
+</ion-slides> -->
 </div>
 
 
 <div>
-  <div>vendors</div>
-    <ion-slides #vendorSlider dir="auto" loop="true"  slidesPerView="3" >
-        <ion-slide *ngFor="let item of vendorsArray" (tap)="vendor(item)">
-           <img src="{{item.image}}" alt="vendors Image">
-           
-        </ion-slide>
-      </ion-slides>      
+  <div class="segment-header">Browse By Category</div>
+  <ion-scroll class="content-scroll" scrollY="true" >       
+      <ion-item class="cate-list-item"  *ngFor="let item of category_array" (click)="categories(item)">
+          
+       <ion-label class="category-img-wrapper">
+          <div class="pic-box">
+          <img  [src] = "getImgContent(item.image)">
+        </div>    
+          <div class="title">{{item.name}}</div>
+    
+      </ion-label> 
+    
+  
+        </ion-item>
+      </ion-scroll>
 </div>
  
   
@@ -65,7 +91,7 @@
 
 <!-- <div  class="list-container" [ngSwitch]="viewNum">
   <div *ngSwitchCase="'0'"> -->
-    <!-- <ion-scroll class="content-scroll" scrollY="true" >       
+     <!-- <ion-scroll class="content-scroll" scrollY="true" >       
     <ion-item class="cate-list-item"  *ngFor="let item of category_array" (tap)="categories(item)">
         
      <ion-label class="category-img-wrapper">
@@ -78,8 +104,8 @@
   
 
       </ion-item>
-    </ion-scroll>
-    -->
+    </ion-scroll> -->
+    
   <!-- </div> -->
 
 <!-- <div class="list-container" *ngSwitchCase="'1'"> -->
@@ -139,3 +165,5 @@
   </div> 
 </div> -->
 </ion-content>
+
+

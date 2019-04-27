@@ -48,8 +48,7 @@ export class HomePage {
     }
   ];
 
-  categorySlider :customSlider;
-  vendorSlider: customSlider;
+  vendorSlider: any[][];
   selected : {item : any , Position : number};
   
   adsCount: number = 0;
@@ -91,6 +90,7 @@ export class HomePage {
     this.viewNum=0;
     console.log(this.category_array)
     console.log(this.vendorsArray);
+    this.setVendors();
     // this.catProv.getItemsNop().then(data=>{
     //   this.prods=data;
     //   this.ReadyProds=true;
@@ -135,6 +135,18 @@ export class HomePage {
     
   }
 
+  setVendors(){
+    this.vendorSlider = new Array();
+    let counter = 0;
+    for(let i = 0;i<this.vendorsArray.length;i=i+2){
+      this.vendorSlider[counter] = new Array();
+      this.vendorSlider[counter][0]=this.vendorsArray[i];
+      this.vendorSlider[counter][1]=this.vendorsArray[i+1];
+      counter++;
+    }
+    console.log(this.vendorSlider);
+  }
+
 
   getImgContent(imageData: string):SafeUrl{
     return this.sanitizer.bypassSecurityTrustUrl(imageData);
@@ -143,7 +155,7 @@ export class HomePage {
   ionViewDidLoad() {
     this.viewNum='0';
     console.log('HomePage');
-     this.OnInit();
+    //  this.OnInit();
   }
 
   public OnInit() {
@@ -230,6 +242,7 @@ export class HomePage {
     this.navCtrl.push('SearchPage');
   }
   vendor(item){
+    console.log(item);
     this.navCtrl.push(VendorPage,{'vendor' : item});
   }
   changeView(){
