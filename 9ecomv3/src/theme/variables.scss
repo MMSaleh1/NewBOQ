@@ -441,6 +441,10 @@ $tabs-background: color($colors, primary);
 }
 .toolbar .searchbar-ios {
   padding: 6px !important;
+  .searchbar-input{
+    background: rgb(255, 255, 255) !important;
+
+  }
 }
 
 

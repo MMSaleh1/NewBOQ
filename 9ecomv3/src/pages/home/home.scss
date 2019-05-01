@@ -91,9 +91,9 @@ page-home {
     border-bottom-right-radius: 12px;
   }
   .content-scroll{
-    height: 26vh;
-    width: 90%;
-    margin: auto;
+    height: 40vh;
+    width: 95%;
+    margin-left: 2rem;
   }
   
   .label-md {
@@ -134,12 +134,13 @@ padding-right: 0px !important;
 .cate-list-item{
      background-color: transparent;
      display: inline-block;
-     width: 40vw;
-     margin-right: 2rem;
+     width: 41vw;
+     margin-right: 1rem;
      border-top-left-radius: 15px;
      border-top-right-radius: 15px;
      border-bottom-left-radius: 15px;
      border-bottom-right-radius: 15px;
+     margin-bottom: -2rem;
 
   .label-md{
     height: 100%;
@@ -554,7 +555,7 @@ padding-right: 0px !important;
     padding-left: 6px;
   }
   .slides{
-    height: 24vh;
+    height: 13vh;
     
   }
   
