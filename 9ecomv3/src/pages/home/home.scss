@@ -50,12 +50,24 @@ page-home {
   
     }
   }
+
+  .category-list-container{
+    width: 30vw;
+   
+    // box-shadow: inset 0px 0px 2px 0px grey;
+    height: 10vh;
+    /* display: inline-block; */
+    border-radius: 6px;
+    margin-bottom: 4rem;
+   
+   
+  }
   // .vendor-image{
   //   width: 98%;
   //   height: 12vh;
   //   padding: 5px;
   // }
-  .categoty-scroll{
+  .vendor-scroll{
     height: 15vh;
     white-space: nowrap;
     width: 90vw;
@@ -70,16 +82,44 @@ page-home {
       /* padding-right: 3vw; */
       color: #000000;
       background-color: #f1ebeb;
-      font-size: 2.25rem;
+      font-size: 2rem;
       text-align: center;
-      border-top-right-radius: 12px;
-      border-top-left-radius: 12px;
+      // border-top-right-radius: 12px;
+      // border-top-left-radius: 12px;
     }
     .vertical-list{
       display: inline-block;
       width: 30vw;
       height: 13vh;
       margin-right: 6vw;
+    }
+
+  }
+  .category-scroll{
+    height: 28vh;
+    white-space: nowrap;
+    width: 92vw;
+    margin: auto;
+    .title {
+      width: 100%;
+      /* overflow: hidden; */
+      white-space: nowrap;
+      /* text-overflow: ellipsis; */
+      /* padding-top: 1vh; */
+      /* padding-left: 3vw; */
+      /* padding-right: 3vw; */
+      color: #000000;
+      background-color: #f1ebeb;
+      font-size: 2rem;
+      text-align: center;
+      // border-top-right-radius: 12px;
+      // border-top-left-radius: 12px;
+    }
+    .vertical-list{
+      display: inline-block;
+      width: 30vw;
+      height: 13vh;
+      margin-right: 1vw;
     }
   }
 
@@ -91,7 +131,7 @@ page-home {
     border-bottom-right-radius: 12px;
   }
   .content-scroll{
-    height: 40vh;
+    height: 39vh;
     width: 95%;
     margin-left: 2rem;
   }
@@ -132,50 +172,29 @@ padding-right: 0px !important;
   height: 70vh;
 }
 .cate-list-item{
-     background-color: transparent;
-     display: inline-block;
-     width: 41vw;
-     margin-right: 1rem;
-     border-top-left-radius: 15px;
-     border-top-right-radius: 15px;
-     border-bottom-left-radius: 15px;
-     border-bottom-right-radius: 15px;
-     margin-bottom: -2rem;
+    background-color: transparent;
+    display: inline-block;
+    width: 29vw;
+    margin-right: 0.6rem;  
 
   .label-md{
     height: 100%;
 
   }
-  .title{
-    width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    /* padding-top: 1vh; */
-    padding-left: 3vw;
-    padding-right: 3vw;
-    color: #191818;
-    /* position: fixed; */
-    /* text-align: center; */
-    /* bottom: 3.7vh; */
-    /* background-color: rgba(0, 0, 0, 0.3); */
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    font-size: 2rem;
-    
-}
-   
+ 
   
 
   .pic-box {
+    
     text-align: center;
-    padding-top: 0.3vh;
     position: relative;
-  
+    height: 10vh;
     img {
-      border-radius: 15px;
-      width: 100%;
-     
+         /* border-radius: 15px; */
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    width: 100%;
+    height: 100%;
     }
   }
   .category-img-wrapper{
@@ -218,15 +237,13 @@ padding-right: 0px !important;
       }
     }
     .title {
-      width: 98%;
-      overflow: hidden;
+      width: 100%;
       white-space: nowrap;
-      text-overflow: ellipsis;
-      padding-top: 1vh;
-      padding-left: 3vw;
-      padding-right: 3vw;
+      color: #000000;
+      background-color: #f1ebeb;
+      font-size: 2.0rem;
+      text-align: center;
       color: color($colors, greydark);
-      font-size: 1.25rem;
     }
    
      
@@ -555,7 +572,7 @@ padding-right: 0px !important;
     padding-left: 6px;
   }
   .slides{
-    height: 13vh;
+    height: 19vh;
     
   }
   

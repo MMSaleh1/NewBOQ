@@ -1,3 +1,4 @@
+
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides , Scroll } from 'ionic-angular';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
@@ -39,16 +40,11 @@ export class HomePage {
       title: 'Super Sale <span>50%</span> off',
       description: 'on international brands',
       
-    },
-    {
-      image: 'assets/img/philips1.jpg',
-      title: 'Crazy <span>65%</span> off',
-      description: 'on international brands',
-      
     }
   ];
 
   vendorSlider: any[][];
+  categorySlider: any[][];
   selected : {item : any , Position : number};
   
   adsCount: number = 0;
@@ -91,6 +87,7 @@ export class HomePage {
     console.log(this.category_array)
     console.log(this.vendorsArray);
     this.setVendors();
+    this.setCategories();
     // this.catProv.getItemsNop().then(data=>{
     //   this.prods=data;
     //   this.ReadyProds=true;
@@ -145,6 +142,18 @@ export class HomePage {
       counter++;
     }
     console.log(this.vendorSlider);
+  }
+
+  setCategories(){
+    this.categorySlider = new Array();
+    let counter = 0;
+    for(let i = 0;i<this.category_array.length;i=i+2){
+      this.categorySlider[counter] = new Array();
+      this.categorySlider[counter][0]=this.category_array[i];
+      this.categorySlider[counter][1]=this.category_array[i+1];
+      counter++;
+    }
+    console.log(this.categorySlider);
   }
 
 

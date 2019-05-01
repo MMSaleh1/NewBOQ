@@ -92,6 +92,7 @@ ion-navbar.toolbar{
 
 
 
+
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
@@ -123,6 +124,12 @@ ion-navbar.toolbar{
 content{
   background-image: url("../assets/img/BOQ-home-bg.png");  
 
+}
+.toolbar{
+  height: 17vh !important;
+}
+.searchbar-input{
+  height: 6vh !important;
 }
 
 
