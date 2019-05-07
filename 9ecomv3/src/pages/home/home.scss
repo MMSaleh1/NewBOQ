@@ -1,11 +1,14 @@
 page-home {
+  .input:disabled{
+    background-color: #ffffff !important;
+}
   .segment-header{
     color: color($colors,greydark);
     font-size: 1.2em;
     width: 88%;
     padding-top: 2vh;
     padding-bottom: 2vh;
-    font-family: gothem;
+    font-family: 'Times New Roman';
     margin: auto;
   }
   .vendor-list-container{
@@ -34,7 +37,7 @@ page-home {
       width: 16vw;
       position: absolute;
       top: 1.3rem;
-      font-family: gothem;
+      font-family: 'Times New Roman';
       margin-left: 1rem;
   
     }
@@ -45,7 +48,7 @@ page-home {
       width: 16vw;
       position: absolute;
       top: 7.3rem;
-      font-family: gothem;
+      font-family: 'Times New Roman' ;
       margin-left: 1rem;
   
     }
@@ -103,6 +106,7 @@ page-home {
     .title {
       width: 100%;
       /* overflow: hidden; */
+      font-family: 'Times New Roman' ;
       white-space: nowrap;
       /* text-overflow: ellipsis; */
       /* padding-top: 1vh; */
@@ -110,7 +114,7 @@ page-home {
       /* padding-right: 3vw; */
       color: #000000;
       background-color: #f1ebeb;
-      font-size: 2rem;
+      font-size: 1.8rem;
       text-align: center;
       // border-top-right-radius: 12px;
       // border-top-left-radius: 12px;
