@@ -8,8 +8,14 @@ page-welcome {
         
 
             .logo-img{
-                width: 100vw;
-                height: 100vh;
+              position: absolute;
+              top: 12vh;
+              right: 14vw;
+              width: 70vw;
+            }
+            .background-img{
+              width: 100vw;
+              height: 100vh;
             }
         
     }

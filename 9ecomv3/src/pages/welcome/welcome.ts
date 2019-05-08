@@ -92,7 +92,7 @@ export class WelcomePage {
           this.db = Database.getInstance();
           this.userData.Addresses = await this.userProv.getAddress(this.userData.id);
           console.log(this.userData.Addresses);
-          this.navCtrl.setRoot('TabsPage');
+           this.navCtrl.setRoot('TabsPage');
 
         
          /*
@@ -109,7 +109,7 @@ export class WelcomePage {
       }else{
         console.log(this.loadProgress);
         this.loadProgress=100;
-       this.navCtrl.setRoot('SigninPage');
+        this.navCtrl.setRoot('SigninPage');
       }
 
   }
