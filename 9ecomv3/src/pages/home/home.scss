@@ -7,7 +7,7 @@ page-home {
     font-size: 1.2em;
     width: 88%;
     padding-top: 2vh;
-    padding-bottom: 2vh;
+    padding-bottom: 1vh;
     font-family: 'Times New Roman';
     margin: auto;
   }
@@ -35,10 +35,9 @@ page-home {
       overflow: hidden;
       white-space: nowrap;
       width: 16vw;
-      position: absolute;
-      top: 1.3rem;
+      vertical-align: sub;
       font-family: 'Times New Roman';
-      margin-left: 1rem;
+      
   
     }
     .vendor-name2{
@@ -46,10 +45,9 @@ page-home {
       overflow: hidden;
       white-space: nowrap;
       width: 16vw;
-      position: absolute;
-      bottom: 1.2rem;
+      vertical-align: sub;
       font-family: 'Times New Roman';
-      margin-left: 1rem;
+     
   
     }
   }
@@ -576,7 +574,7 @@ padding-right: 0px !important;
     padding-left: 6px;
   }
   .slides{
-    height: 19vh;
+    height: 18vh;
     
   }
   
