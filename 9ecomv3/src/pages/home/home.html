@@ -47,7 +47,7 @@
         <div class="vendor-name1">{{item[0].name}}</div>
       </div>
 
-      <div class="vendor-list-container"  (click)="vendor(item[1])" >
+      <div class="vendor-list-container" *ngIf="item[1] != undefined"  (click)="vendor(item[1])" >
           <div class="vendor-image-container"> <img  class="vendor-image" src="{{item[1].image}}"></div>
           <div class="vendor-name2">{{item[1].name}}</div>
         </div>
@@ -88,7 +88,7 @@
       </div>
 
       <div class="category-list-container">
-          <ion-item class="cate-list-item"(click)="categories(item[1])">
+          <ion-item class="cate-list-item" *ngIf="item[1] != undefined" (click)="categories(item[1])">
               
            <ion-label class="category-img-wrapper">
               <div class="title">{{item[1].name}}</div>

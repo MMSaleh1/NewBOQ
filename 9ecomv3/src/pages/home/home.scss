@@ -18,7 +18,7 @@ page-home {
     height: 5.5vh;
     /* display: inline-block; */
     border-radius: 6px;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     .vendor-image-container{
       height: 100%;
       display: inline-block;
@@ -47,8 +47,8 @@ page-home {
       white-space: nowrap;
       width: 16vw;
       position: absolute;
-      top: 7.3rem;
-      font-family: 'Times New Roman' ;
+      bottom: 1.2rem;
+      font-family: 'Times New Roman';
       margin-left: 1rem;
   
     }
@@ -71,7 +71,7 @@ page-home {
   //   padding: 5px;
   // }
   .vendor-scroll{
-    height: 15vh;
+    height: 13vh;
     white-space: nowrap;
     width: 90vw;
     margin: auto;
@@ -99,7 +99,7 @@ page-home {
 
   }
   .category-scroll{
-    height: 28vh;
+    height: 29.5vh;
     white-space: nowrap;
     width: 92vw;
     margin: auto;
