@@ -24,7 +24,7 @@ import { HttpClientModule,HttpClient } from '@angular/common/http';
 import { TranslatorProvider } from '../providers/translator/translator';
 import { SearchProvider } from '../providers/search/search';
 import { ProductProvider } from '../providers/product/product';
-import { NotificationCenterProvider } from '../providers/notification-center/notification-center';
+// import { NotificationCenterProvider } from '../providers/notification-center/notification-center';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -90,7 +90,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClient,
     SearchProvider,
     ProductProvider,
-    NotificationCenterProvider
     
   ]
 })
