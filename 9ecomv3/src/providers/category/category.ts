@@ -55,81 +55,81 @@ export class CategoryProvider {
     })
   }
 
-  public async getItemsNop(): Promise<any> {
-    let comps = <Array<Vendor>> await this.getVendors();
-    console.log(comps);
-    return new Promise((resolve) => {
-     // console.log(`${RootProvider.APIURL4}Product`);
-      this.http.get(`${RootProvider.APIURL4}${this.productApiController}${this.productsActionString}product`).map(res => <any>res.json()).subscribe(data => {
-        if (data == undefined || data.length == 0) {
-          resolve([]);
-        }
-        else {
-          let items: Product[] = new Array();
-          //for(let i = 0 ; i < data.length ; i++){
-          //  items[i] = new Product(data[i].item_name,data[i].item_id,data[i].item_type_id,data[i].item_img1,data[i].item_img2,data[i].inventory,data[i].measure_unit,data[i].item_long_desc,data[i].distributor_id,data[i].price ,data[i].offer_id , data[i].offer_name,data[i].discount_percentage,data[i].item_distributor_id,data[i].company_id);
+  // public async getItemsNop(): Promise<any> {
+  //   let comps = <Array<Vendor>> await this.getVendors();
+  //   console.log(comps);
+  //   return new Promise((resolve) => {
+  //    // console.log(`${RootProvider.APIURL4}Product`);
+  //     this.http.get(`${RootProvider.APIURL4}${this.productApiController}${this.productsActionString}product`).map(res => <any>res.json()).subscribe(data => {
+  //       if (data == undefined || data.length == 0) {
+  //         resolve([]);
+  //       }
+  //       else {
+  //         let items: Product[] = new Array();
+  //         //for(let i = 0 ; i < data.length ; i++){
+  //         //  items[i] = new Product(data[i].item_name,data[i].item_id,data[i].item_type_id,data[i].item_img1,data[i].item_img2,data[i].inventory,data[i].measure_unit,data[i].item_long_desc,data[i].distributor_id,data[i].price ,data[i].offer_id , data[i].offer_name,data[i].discount_percentage,data[i].item_distributor_id,data[i].company_id);
 
-          //}
-          for (let i = 0; i < data.length; i++) {
-            if(!data[i].Deleted){
-              let specs = new Specs(data[i].Weight, data[i].Length, data[i].Height, data[i].Width);
-              items.push(new Product(data[i].Name
-                , data[i].Id
-                , data[i].CategoryId
-                , data[i].StockQuantity
-                , specs
-                , data[i].ShortDescription
-                , data[i].VendorId
-                , data[i].Price
-                , data[i].FullDescription
-                , data[i].ShowOnHomePage
-                , data[i].AllowCustomerReviews
-                , data[i].ApprovedRatingSum
-                , data[i].NotApprovedRatingSum
-                , data[i].IsShipEnabled
-                , data[i].IsFreeShipping
-                , data[i].AdditionalShippingCharge
-                , data[i].DeliveryDateId
-                , data[i].OrderMaximumQuantity
-                , data[i].OrderMinimumQuantity
-                , data[i].OldPrice
-                , data[i].IsNew
-                , data[i].MarkAsNewStartDateTimeUtc
-                , data[i].MarkAsNewEndDateTimeUtc
-                , data[i].PictureBinary
-                , data[i].MimeType
-                , data[i].rating
-                , data[i].num_of_customers
-              ))
+  //         //}
+  //         for (let i = 0; i < data.length; i++) {
+  //           if(!data[i].Deleted){
+  //             let specs = new Specs(data[i].Weight, data[i].Length, data[i].Height, data[i].Width);
+  //             items.push(new Product(data[i].Name
+  //               , data[i].Id
+  //               , data[i].CategoryId
+  //               , data[i].StockQuantity
+  //               , specs
+  //               , data[i].ShortDescription
+  //               , data[i].VendorId
+  //               , data[i].Price
+  //               , data[i].FullDescription
+  //               , data[i].ShowOnHomePage
+  //               , data[i].AllowCustomerReviews
+  //               , data[i].ApprovedRatingSum
+  //               , data[i].NotApprovedRatingSum
+  //               , data[i].IsShipEnabled
+  //               , data[i].IsFreeShipping
+  //               , data[i].AdditionalShippingCharge
+  //               , data[i].DeliveryDateId
+  //               , data[i].OrderMaximumQuantity
+  //               , data[i].OrderMinimumQuantity
+  //               , data[i].OldPrice
+  //               , data[i].IsNew
+  //               , data[i].MarkAsNewStartDateTimeUtc
+  //               , data[i].MarkAsNewEndDateTimeUtc
+  //               , data[i].PictureBinary
+  //               , data[i].MimeType
+  //               , data[i].rating
+  //               , data[i].num_of_customers
+  //             ))
 
-            }
+  //           }
            
           
-          }
-          for(let i =0; i< items.length;i++)
-          {
-            for(let j = 0 ; j< comps.length;j++){
-              if(items[i].distributerId == comps[j].id){
-                items[i].company_name = comps[j].name;
-              }
-            }
-          }          
-          resolve(items);
-        }
-      })
+  //         }
+  //         for(let i =0; i< items.length;i++)
+  //         {
+  //           for(let j = 0 ; j< comps.length;j++){
+  //             if(items[i].distributerId == comps[j].id){
+  //               items[i].company_name = comps[j].name;
+  //             }
+  //           }
+  //         }          
+  //         resolve(items);
+  //       }
+  //     })
 
-    })
+  //   })
 
-  }
+  // }
 
 
 
   public async getSubCategoriesNop(): Promise<any> {
-    let items = await this.getItemsNop();
-    console.log(items);
+   // let items = await this.getItemsNop();
+   // console.log(items);
     return new Promise((resolve) => {
       this.http.get(`${RootProvider.APIURL4}${this.subCategoriesApiController}${this.subCategoriesActionString}`).map(res => <any>res.json()).subscribe(data => {
-        if (data == null || data.length == 0 || items.length == 0) {
+        if (data == null || data.length == 0) {
           resolve([]);
         }
         else {
@@ -137,14 +137,14 @@ export class CategoryProvider {
           for (let i = 0; i < data.length; i++) {
             let Subitems = new Array();
             if (data[i].Deleted == false) {
-              for (let j = 0; j < items.length; j++) {
+              // for (let j = 0; j < items.length; j++) {
 
 
-                if (data[i].Id == items[j].product_subcat) {
-                  Subitems.push(items[j])
-                }
+              //   if (data[i].Id == items[j].product_subcat) {
+              //     Subitems.push(items[j])
+              //   }
 
-              }
+              // }
               subcat.push(new Category(data[i].Name, data[i].Id, Subitems, data[i].PictureBinary, data[i].MimeType, data[i].ParentCategoryId, data[i].Deleted))
 
             }

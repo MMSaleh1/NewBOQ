@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild  } from '@angular/core';
 import { IonicPage, NavController, NavParams , PopoverController } from 'ionic-angular';
-import { Category,CategoryProvider } from '../../providers/category/category';
+import { IonInfiniteScroll } from '@ionic/angular';
 
-import { Product } from '../../providers/product/product';
+
+
+import { Category,CategoryProvider } from '../../providers/category/category';
+import { Product , ProductProvider } from '../../providers/product/product';
 import { ProductPage } from '../product/product';
 import { Cart } from '../../providers/cart/cart';
-
 import { CateListModalPage } from '../cate-list-modal/cate-list-modal';
 
 /**
@@ -29,19 +31,26 @@ export class SubCateListPage {
   listSelected:any;
   name="";
   route:Array<string>;
-
+  ready:boolean = false;
   cart: Cart;
+  hasProds:boolean= false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public CateProv : CategoryProvider , public popoverCtrl : PopoverController) {
-   
+  constructor(public navCtrl: NavController, public navParams: NavParams,public CateProv : CategoryProvider , public popoverCtrl : PopoverController , private prodProvider : ProductProvider) {
     this.category = this.navParams.get('data');
     this.name =this.category.name;
-    this.products = new Array();
+    //this.products = new Array();
     //console.log(this.category);
-    this.products = this.CateProv.getCateItem(this.category,this.products);
+    //this.products = this.CateProv.getCateItem(this.category,this.products);
     //console.log(this.products);
-    this.results = this.products;
+    this.results = new Array;
     this.listSelected='0';
+    this.prodProvider.pagingProductCates(this.category.id,0,10).then(data=>{
+      this.results= data;
+      this.ready = true;
+      if(this.results.length>0){
+        this.hasProds =true;
+      }
+    });
   
     
   }
@@ -146,6 +155,22 @@ export class SubCateListPage {
 
   placeOrder() {
     this.navCtrl.push('CheckoutPage');
+  }
+
+
+  scrollFunction($event){
+    console.log($event);
+    this.prodProvider.pagingProductCates(this.category.id,this.results[0].id,10).then(data=>{
+      if(data.length == 0){
+        $event.complete();
+        this.hasProds=false
+
+      }else{
+        this.results.push(data);
+        $event.complete();
+      }
+   
+    })
   }
 
 

@@ -5,24 +5,33 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar (tap)="toSearchPage()">
+  <!-- <ion-navbar (tap)="toSearchPage()"> -->
+    <ion-navbar>
     <div class=menu-img-container>
       <img src="assets/img/logo-white.png"  class="menu-logo-img">
     </div>
     <div>
-        <ion-searchbar placeholder="What Are You Looking For?" mode="md" id="input"></ion-searchbar> 
-    </div>
+        <!-- <ion-searchbar placeholder="What Are You Looking For?" mode="md" id="input"></ion-searchbar>  -->
+        <ion-auto-complete [dataProvider]="searchProv" [template]="customItems" (itemSelected)="showSelected($event)"></ion-auto-complete>
+          <!-- <search></search> -->
+      </div>
       
   </ion-navbar> 
-  <!-- <ion-segment mode="md" [(ngModel)]="viewNum" color="primary">
-      <ion-segment-button value="0">
-        <div class="search-change">{{'homePage.Category' | translate}}</div>
-      </ion-segment-button>
-      <ion-segment-button value="1">
-        <div class="search-change">{{'homePage.Supplier' | translate}}</div>
-      </ion-segment-button>
-    </ion-segment>
-     -->
+  
+<ng-template #customItems let-attrs="attrs">
+  <ion-item class="item">
+      <ion-avatar item-start>
+          <img src="{{attrs.data.searchableObject.image}}" class="search-image"/>
+        </ion-avatar>
+          
+          <div [innerHTML]="attrs.data.searchableObject.name"></div>
+  </ion-item>
+  </ng-template>
+  
+  
+  
+  
+
 </ion-header>
 <ion-content center class="page-home pane no-scroll">
 

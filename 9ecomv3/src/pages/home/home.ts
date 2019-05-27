@@ -7,6 +7,7 @@ import { Storage } from "@ionic/storage";
 import { Category, CategoryProvider, Vendor } from '../../providers/category/category';
 import { Database} from '../../providers/database';
 import { SubCateListPage } from '../sub-cate-list/sub-cate-list';
+import { SearchProvider }from '../../providers/search/search';
 import { TranslatorProvider } from '../../providers/translator/translator';
 import { VendorPage } from '../vendor/vendor';
 
@@ -71,6 +72,7 @@ export class HomePage {
     , public catProv: CategoryProvider
     , private sanitizer: DomSanitizer
     , private trnasProv: TranslatorProvider
+    , public searchProv : SearchProvider
 
     
 
@@ -114,9 +116,9 @@ export class HomePage {
   
 
   ionViewDidEnter() {
-    let input :any = document.getElementById("input").getElementsByTagName("INPUT");
-     console.log(input);
-     input[0].disabled=true;
+    // let input :any = document.getElementById("input").getElementsByTagName("INPUT");
+    //  console.log(input);
+    //  input[0].disabled=true;
     console.log(this.viewNum);
 
     // this variable is to get the subcategories, when the categoriespage is pushed , 
@@ -261,6 +263,17 @@ export class HomePage {
     this.trnasProv.switchLang();
   }
 
+  public showSelected(data :any ) {
+    console.log(data);
+    let val = data.pageParameters;
+   
+    console.log(val);
+    this.navCtrl.push(data.pageLocation,{'data' : val});
+   
+  }
+
+
+
   }
   
 
@@ -287,6 +300,8 @@ class customSlider{
     this.itemCol1= this.items.slice(0,this.items.length/2);
     this.itemCol2= this.items.slice(this.items.length/2, this.items.length);
   }
+
+  
 
 
   

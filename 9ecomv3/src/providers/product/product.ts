@@ -1,3 +1,4 @@
+import { Database } from './../database';
 import { Http} from '@angular/http';
 import { Injectable } from '@angular/core';
 import { RootProvider } from '../root/root';
@@ -17,6 +18,10 @@ export class ProductProvider extends RootProvider {
 
   private getShippingPriceController:string = 'shipping/';
   private getShippingPriceActionString:string = 'shipping_by_weight?';
+
+  private getProductPagingController:string = "product_paging/";
+  private getProductCatePagingActionString:string= "get_product_page_by_cat?";
+  private getProductVendPagingActionString:string= "get_product_page_by_vendor?";
 
   constructor(public http: Http) {
     super(http);
@@ -69,6 +74,145 @@ export class ProductProvider extends RootProvider {
     })
 
   }
+
+  //Product Paging (Categories Based)
+  public pagingProductCates(catId:string,prodLastId:number =0, prodCount:number = 10) : Promise<any>{
+    let db = Database.getInstance();
+    let comps = db.vendors;
+    let temp = `${RootProvider.APIURL4}${this.getProductPagingController}${this.getProductCatePagingActionString}product_num=${prodCount}&last_id=${prodLastId}&cat_id=${catId}`
+    console.log(temp);
+    return new Promise((resolve)=>{
+      this.http.get(temp).map(res=><any>res.json()).subscribe(data=>{
+        if (data == undefined || data.length == 0) {
+          resolve([]);
+        }
+        else {
+          let items: Product[] = new Array();
+          //for(let i = 0 ; i < data.length ; i++){
+          //  items[i] = new Product(data[i].item_name,data[i].item_id,data[i].item_type_id,data[i].item_img1,data[i].item_img2,data[i].inventory,data[i].measure_unit,data[i].item_long_desc,data[i].distributor_id,data[i].price ,data[i].offer_id , data[i].offer_name,data[i].discount_percentage,data[i].item_distributor_id,data[i].company_id);
+  
+          //}
+          for (let i = 0; i < data.length; i++) {
+            if(!data[i].Deleted){
+              let specs = new Specs(data[i].Weight, data[i].Length, data[i].Height, data[i].Width);
+              items.push(new Product(data[i].Name
+                , data[i].Id
+                , data[i].CategoryId
+                , data[i].StockQuantity
+                , specs
+                , data[i].ShortDescription
+                , data[i].VendorId
+                , data[i].Price
+                , data[i].FullDescription
+                , data[i].ShowOnHomePage
+                , data[i].AllowCustomerReviews
+                , data[i].ApprovedRatingSum
+                , data[i].NotApprovedRatingSum
+                , data[i].IsShipEnabled
+                , data[i].IsFreeShipping
+                , data[i].AdditionalShippingCharge
+                , data[i].DeliveryDateId
+                , data[i].OrderMaximumQuantity
+                , data[i].OrderMinimumQuantity
+                , data[i].OldPrice
+                , data[i].IsNew
+                , data[i].MarkAsNewStartDateTimeUtc
+                , data[i].MarkAsNewEndDateTimeUtc
+                , data[i].PictureBinary
+                , data[i].MimeType
+                , data[i].rating
+                , data[i].num_of_customers
+              ))
+  
+            }
+           
+          
+          }
+          for(let i =0; i< items.length;i++)
+          {
+            for(let j = 0 ; j< comps.length;j++){
+              if(items[i].distributerId == comps[j].id){
+                items[i].company_name = comps[j].name;
+              }
+            }
+          }          
+          resolve(items);
+        }
+      })
+
+    })
+   
+  
+  }
+
+
+
+    //Product Paging (Vendor Based)
+    public pageProductVendor(vendorId:string,prodLastId:string ='0', prodCount:number = 10):Promise<any>{
+      let db = Database.getInstance();
+      let comps = db.vendors;
+      let temp = `${RootProvider.APIURL4}${this.getProductPagingController}${this.getProductVendPagingActionString}product_num=${prodCount}&last_id=${prodLastId}&vendor_id=${vendorId}`
+      return new Promise((resolve)=>{
+        this.http.get(temp).map(res=><any>res.json()).subscribe(data=>{
+          if (data == undefined || data.length == 0) {
+            resolve([]);
+          }
+          else {
+            let items: Product[] = new Array();
+            //for(let i = 0 ; i < data.length ; i++){
+            //  items[i] = new Product(data[i].item_name,data[i].item_id,data[i].item_type_id,data[i].item_img1,data[i].item_img2,data[i].inventory,data[i].measure_unit,data[i].item_long_desc,data[i].distributor_id,data[i].price ,data[i].offer_id , data[i].offer_name,data[i].discount_percentage,data[i].item_distributor_id,data[i].company_id);
+    
+            //}
+            for (let i = 0; i < data.length; i++) {
+              if(!data[i].Deleted){
+                let specs = new Specs(data[i].Weight, data[i].Length, data[i].Height, data[i].Width);
+                items.push(new Product(data[i].Name
+                  , data[i].Id
+                  , data[i].CategoryId
+                  , data[i].StockQuantity
+                  , specs
+                  , data[i].ShortDescription
+                  , data[i].VendorId
+                  , data[i].Price
+                  , data[i].FullDescription
+                  , data[i].ShowOnHomePage
+                  , data[i].AllowCustomerReviews
+                  , data[i].ApprovedRatingSum
+                  , data[i].NotApprovedRatingSum
+                  , data[i].IsShipEnabled
+                  , data[i].IsFreeShipping
+                  , data[i].AdditionalShippingCharge
+                  , data[i].DeliveryDateId
+                  , data[i].OrderMaximumQuantity
+                  , data[i].OrderMinimumQuantity
+                  , data[i].OldPrice
+                  , data[i].IsNew
+                  , data[i].MarkAsNewStartDateTimeUtc
+                  , data[i].MarkAsNewEndDateTimeUtc
+                  , data[i].PictureBinary
+                  , data[i].MimeType
+                  , data[i].rating
+                  , data[i].num_of_customers
+                ))
+    
+              }
+             
+            
+            }
+            for(let i =0; i< items.length;i++)
+            {
+              for(let j = 0 ; j< comps.length;j++){
+                if(items[i].distributerId == comps[j].id){
+                  items[i].company_name = comps[j].name;
+                }
+              }
+            }          
+            resolve(items);
+          }
+        })
+      })
+      
+    }
 
   
 

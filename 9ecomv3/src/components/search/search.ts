@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {NavController} from 'ionic-angular';
-import { SearchProvider}from '../../providers/search/search';
+import { SearchProvider }from '../../providers/search/search';
 import { FormGroup, Validators, FormControl } from '@angular/forms'
 
 

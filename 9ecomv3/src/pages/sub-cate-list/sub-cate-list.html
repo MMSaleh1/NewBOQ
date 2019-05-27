@@ -52,7 +52,7 @@
 
 
   <!-- <ion-list *ngSwitchCase="'1'" > -->
-    <div class="scroll-container">
+    <div class="scroll-container" *ngIf="ready">
       <ion-scroll scrollY="true" class="scroll-list">
     <ion-list>
     <ion-item class="cart-list-item" *ngFor="let product of results">
@@ -78,6 +78,13 @@
     </ion-item>
   </ion-list>
 </ion-scroll>
+
+<ion-infinite-scroll (ionInfinite)="scrollFunction($event)" *ngIf="hasProds">
+  <ion-infinite-scroll-content
+    loadingSpinner="bubbles"
+    loadingText="Loading more data...">
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
 </div>
 
 </ion-content>

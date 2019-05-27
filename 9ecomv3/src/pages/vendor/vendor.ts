@@ -1,3 +1,4 @@
+import { ProductProvider } from './../../providers/product/product';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Category, CategoryProvider, Vendor } from '../../providers/category/category';
@@ -22,17 +23,24 @@ export class VendorPage {
   private allProduct : Array<Product>;
   public resultsProd :Array<Product>;
   private vendor : Vendor;
-  private ready=false;
+  public ready=false;
   private cart : Cart;
+  public  hasProds = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams , private catProv : CategoryProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams , private catProv : CategoryProvider,private productProv: ProductProvider){
     this.allProduct=new Array();
     this.resultsProd = new Array();
     this.cart = Cart.getInstance();
     this.db =Database.getInstance();
     this.vendor = this.navParams.get('vendor');
     console.log(this.vendor);
-    this.getProducts(this.vendor.id);
+    this.productProv.pageProductVendor(this.vendor.id,"0",10).then(data=>{
+      this.resultsProd=data;
+      this.ready=true;
+      if(this.resultsProd.length>0){
+        this.hasProds =true;
+      }
+      })
   
   }
 
@@ -40,24 +48,24 @@ export class VendorPage {
     console.log('ionViewDidLoad VendorPage');
   }
 
-  getProducts(vendorId:string="-1"){
-    let searchCategories = this.db.categories;
-    let products = new Array<Product>();
-    for(let i = 0 ; i < searchCategories.length;i++){
-      let tempArr = new Array<Product>();
-      tempArr =this.catProv.getCateItem(searchCategories[i],tempArr);
-      console.log(tempArr);
-      products.push(...tempArr);
-    }
-    for(let i = 0 ; i<products.length;i++){
-      if(products[i].distributerId == vendorId){
-        this.allProduct.push(products[i]);
-      }
-    }
-    this.resultsProd = this.allProduct;
-    this.ready=true;
-    console.log(this.allProduct);
-  }
+  // getProducts(vendorId:string="-1"){
+  //   let searchCategories = this.db.categories;
+  //   let products = new Array<Product>();
+  //   for(let i = 0 ; i < searchCategories.length;i++){
+  //     let tempArr = new Array<Product>();
+  //     tempArr =this.catProv.getCateItem(searchCategories[i],tempArr);
+  //     console.log(tempArr);
+  //     products.push(...tempArr);
+  //   }
+  //   for(let i = 0 ; i<products.length;i++){
+  //     if(products[i].distributerId == vendorId){
+  //       this.allProduct.push(products[i]);
+  //     }
+  //   }
+  //   this.resultsProd = this.allProduct;
+  //   this.ready=true;
+  //   console.log(this.allProduct);
+  // }
   getItems(ev: any) {
     // Reset items back to all of the items
     
@@ -125,6 +133,22 @@ placeOrder() {
     }
     
     return 0;
+  }
+
+
+  scrollFunction($event){
+    console.log($event);
+    this.productProv.pageProductVendor(this.vendor.id,this.resultsProd[0].id,10).then(data=>{
+      if(data.length == 0){
+        $event.complete();
+        this.hasProds=false
+
+      }else{
+        this.resultsProd.push(data);
+        $event.complete();
+      }
+   
+    })
   }
 
 

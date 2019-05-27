@@ -1,20 +1,14 @@
 
 
-
 <ng-template #customItems let-attrs="attrs">
-<ion-item>
+<ion-item class="item">
     <ion-avatar item-start>
         <img src="{{attrs.data.searchableObject.image}}" class="search-image"/>
       </ion-avatar>
         
         <div [innerHTML]="attrs.data.searchableObject.name | boldprefix:attrs.keyword"></div>
 </ion-item>
-
-
-    
-
 </ng-template>
-
 
 <ion-auto-complete [dataProvider]="SearchProv" [template]="customItems" (itemSelected)="showSelected($event)"></ion-auto-complete>
 
