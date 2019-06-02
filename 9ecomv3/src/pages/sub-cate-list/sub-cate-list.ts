@@ -9,6 +9,7 @@ import { Product , ProductProvider } from '../../providers/product/product';
 import { ProductPage } from '../product/product';
 import { Cart } from '../../providers/cart/cart';
 import { CateListModalPage } from '../cate-list-modal/cate-list-modal';
+import { Database } from '../../providers/database';
 
 /**
  * Generated class for the SubCateListPage page.
@@ -34,14 +35,17 @@ export class SubCateListPage {
   ready:boolean = false;
   cart: Cart;
   hasProds:boolean= false;
+  db: Database
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public CateProv : CategoryProvider , public popoverCtrl : PopoverController , private prodProvider : ProductProvider) {
-    this.category = this.navParams.get('data');
+    if(this.navParams.get('data')!= undefined){
+      this.category = this.navParams.get('data');
+    }else{
+      this.category = this.db.getCategoryById( this.navParams.get('id'));
+     
+    }
+
     this.name =this.category.name;
-    //this.products = new Array();
-    //console.log(this.category);
-    //this.products = this.CateProv.getCateItem(this.category,this.products);
-    //console.log(this.products);
     this.results = new Array;
     this.listSelected='0';
     this.prodProvider.pagingProductCates(this.category.id,0,10).then(data=>{
@@ -51,7 +55,12 @@ export class SubCateListPage {
         this.hasProds =true;
       }
     });
-  
+    
+    //this.products = new Array();
+    //console.log(this.category);
+    //this.products = this.CateProv.getCateItem(this.category,this.products);
+    //console.log(this.products);
+   
     
   }
 

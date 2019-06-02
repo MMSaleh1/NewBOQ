@@ -6,6 +6,7 @@ import { Product} from '../../providers/product/product';
 import {ProductPage }from '../product/product';
 import {Database} from '../../providers/database'; 
 import { Cart } from '../../providers/cart/cart';
+import { searchable } from '../../providers/search/search';
 
 /**
  * Generated class for the Search page.
@@ -20,9 +21,8 @@ import { Cart } from '../../providers/cart/cart';
 })
 export class SearchPage {
   resultsProd: any[];
-  resultsVend: any[];
   catsArr: Category[];
-  allProduct: Array<Product>;
+  allSearchable: Array<searchable>;
   allVendors:Array<Vendor>;
   mark: string;
   Ready: boolean;
@@ -37,18 +37,14 @@ export class SearchPage {
 
   ) { 
     this.mark="";
-    this.allProduct = new Array<Product>();
-    this.resultsProd = new Array<Product>();
-    this.catsArr = new Array<Category>();
-    this.allVendors= new Array<Vendor>();
     this.Ready=false;
     this.cart = Cart.getInstance();
     this.dataBase =Database.getInstance();
-
-    this.initializeItems();
-    this.allVendors=this.dataBase.vendors;
-    this.searchSegment="Products";
+    this.allSearchable = new Array();
+    this.resultsProd = new Array();
     console.log(this.dataBase); 
+    this.allSearchable = this.dataBase.searchItem;
+    console.log(this.allSearchable);
     
 
   }
@@ -57,25 +53,6 @@ export class SearchPage {
    
     console.log('ionViewDidLoad SearchPage');
   } 
-
-  initializeItems() {
-    //let db = Database.getInstance();
-    //this.resultsProd = db.allProduct();
-    
-      this.catsArr = this.dataBase.categories;
-      console.log(this.catsArr);
-      for(let i = 0 ; i < this.catsArr.length;i++){
-        let tempArr = new Array<Product>();
-        tempArr =this.catProv.getCateItem(this.catsArr[i],tempArr);
-        console.log(tempArr);
-        this.allProduct.push(...tempArr);
-      }
-      console.log(this.allProduct);
-      //this.resultsProd = this.allProduct;
-      //console.log(this.resultsProd);
-      this.Ready=true;
-   
-  }
 
   getItems(ev: any) {
     // Reset items back to all of the items
@@ -86,77 +63,40 @@ export class SearchPage {
 
     // if the value is an empty string  list all items
     this.resultsProd = new Array();
-    //console.log(this.resultsProd.length);
+    
    
     if (val && val.trim() != '') {
       this.mark = val;
      
-      this.resultsProd = this.allProduct.filter((item) => {
+      this.resultsProd = this.allSearchable.filter((item) => {
+        console.log(item.name);
         return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
       });
-      this.resultsVend= this.allVendors.filter((item) => {
-        return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      });
-      //console.log(this.resultsProd);
+
+     
+      console.log(this.resultsProd);
     } else {
       this.resultsProd = new Array();
-      this.resultsVend = new Array();
+
     } 
     //console.log(this.allProduct.length);
   }
-  doInfinite($event){
-    setTimeout(()=>{
-     
-    })
-  }
 
   allDataExist():boolean{
-    console.log(this.resultsProd.length == this.allProduct.length ? true : false);
-    return this.resultsProd.length == this.allProduct.length ? true : false;
+    return this.resultsProd.length == this.allSearchable.length ? true : false;
   }
   
-  decorateTitle(title: string): string {
-    let regEx = new RegExp(this.mark, 'ig')
-    let str = title.replace(regEx, `<span>${this.mark}</span>`);
-    return str;
-  }
+  // decorateTitle(title: string): string {
+  //   let regEx = new RegExp(this.mark, 'ig')
+  //   let str = title.replace(regEx, `<span>${this.mark}</span>`);
+  //   return str;
+  // }
 
-  toProduct(prod: any) {
-    this.navCtrl.push(ProductPage, {data: prod});
+  toPage(prodid: any,pagelocation) {
+    this.navCtrl.push(pagelocation, {id: prodid});
   }
-  toVendor(vendor: any){
-    console.log(vendor);
-  }
-  add2Cart(product:any) { 
-    let flgFound = false;
-    this.cart.products.forEach(specific_item => {
-      //console.log(specific_item)
+ 
 
-      if (specific_item.product != undefined && specific_item.product.id === product.id) {
-        flgFound = true;
-        specific_item.quantity = parseInt(specific_item.quantity.toString()) + 1;
-      }
-      
-    })
-    
-    if (!flgFound) {
-      this.cart.products.push({ product: product, quantity: 1 });
-    }
-  
-  }
-
-  
-  getProdQuant(id :any){
-    if(this.cart != undefined){
-      for(let i =0;i<this.cart.products.length;i++){
-        if(id== this.cart.products[i].product.id){
-          return this.cart.products[i].quantity;
-        }
-      }
-    }
-    
-    return 0;
-  }
 
 }
 

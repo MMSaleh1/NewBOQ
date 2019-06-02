@@ -13,8 +13,10 @@ import { CartProduct } from '../cart/cart';
 */
 @Injectable()
 export class ProductProvider extends RootProvider {
-  private getReviewsAPiController:string ='product/';
+  private productAPiController:string ='product/';
   private getReviewsActionString: string ='get_comments?';
+
+  private getProductByIdActionString: string ="get_product_byid/";
 
   private getShippingPriceController:string = 'shipping/';
   private getShippingPriceActionString:string = 'shipping_by_weight?';
@@ -54,7 +56,7 @@ export class ProductProvider extends RootProvider {
 
 
   getReviews(prodId:string):Promise<any>{
-    let temp = `${RootProvider.APIURL4}${this.getReviewsAPiController}${this.getReviewsActionString}ProductId=${prodId}`;
+    let temp = `${RootProvider.APIURL4}${this.productAPiController}${this.getReviewsActionString}ProductId=${prodId}`;
     console.log(temp);
     return new Promise((resolve)=>{
       this.http.get(temp).map(res=><any>res.json()).subscribe(data=>{
@@ -73,6 +75,48 @@ export class ProductProvider extends RootProvider {
       })
     })
 
+  }
+  public getproductById(prodId: any):Promise<any>{
+    let temp = `${RootProvider.APIURL4}${this.productAPiController}${this.getProductByIdActionString}${prodId}`;
+    return new Promise((resolve)=>{
+      this.http.get(temp).map(res=><any>res.json()).subscribe(data=>{
+        if(data == null || data.length == 0){
+          resolve([])
+        }else{
+            let specs = new Specs(data[0].Weight, data[0].Length, data[0].Height, data[0].Width);
+            let prod = new Product(data[0].Name
+              , data[0].Id
+              , data[0].CategoryId
+              , data[0].StockQuantity
+              , specs
+              , data[0].ShortDescription
+              , data[0].VendorId
+              , data[0].Price
+              , data[0].FullDescription
+              , data[0].ShowOnHomePage
+              , data[0].AllowCustomerReviews
+              , data[0].ApprovedRatingSum
+              , data[0].NotApprovedRatingSum
+              , data[0].IsShipEnabled
+              , data[0].IsFreeShipping
+              , data[0].AdditionalShippingCharge
+              , data[0].DeliveryDateId
+              , data[0].OrderMaximumQuantity
+              , data[0].OrderMinimumQuantity
+              , data[0].OldPrice
+              , data[0].IsNew
+              , data[0].MarkAsNewStartDateTimeUtc
+              , data[0].MarkAsNewEndDateTimeUtc
+              , data[0].PictureBinary
+              , data[0].MimeType
+              , data[0].rating
+              , data[0].num_of_customers
+            )
+          resolve(prod)
+        }
+      })
+    })
+    
   }
 
   //Product Paging (Categories Based)

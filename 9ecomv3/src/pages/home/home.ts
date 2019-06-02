@@ -116,9 +116,9 @@ export class HomePage {
   
 
   ionViewDidEnter() {
-    // let input :any = document.getElementById("input").getElementsByTagName("INPUT");
-    //  console.log(input);
-    //  input[0].disabled=true;
+    let input :any = document.getElementById("input").getElementsByTagName("INPUT");
+     console.log(input);
+     input[0].disabled=true;
     console.log(this.viewNum);
 
     // this variable is to get the subcategories, when the categoriespage is pushed , 

@@ -11,26 +11,12 @@
       <img src="assets/img/logo-white.png"  class="menu-logo-img">
     </div>
     <div>
-        <!-- <ion-searchbar placeholder="What Are You Looking For?" mode="md" id="input"></ion-searchbar>  -->
-        <ion-auto-complete [dataProvider]="searchProv" [template]="customItems" (itemSelected)="showSelected($event)"></ion-auto-complete>
+         <ion-searchbar placeholder="What Are You Looking For?" mode="md" id="input" (tap)="toSearchPage()"></ion-searchbar>  
+
           <!-- <search></search> -->
       </div>
       
   </ion-navbar> 
-  
-<ng-template #customItems let-attrs="attrs">
-  <ion-item class="item">
-      <ion-avatar item-start>
-          <img src="{{attrs.data.searchableObject.image}}" class="search-image"/>
-        </ion-avatar>
-          
-          <div [innerHTML]="attrs.data.searchableObject.name"></div>
-  </ion-item>
-  </ng-template>
-  
-  
-  
-  
 
 </ion-header>
 <ion-content center class="page-home pane no-scroll">

@@ -1,3 +1,4 @@
+import { searchable } from './search/search';
 import { Injectable } from '@angular/core';
 import {Http}from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -8,7 +9,6 @@ import {Cart} from './cart/cart';
 import { OrderData} from './order/order';
 import { Address} from './users/users';
 import { Category, Vendor } from './category/category';
-import { searchable } from './search/search';
 
 
 
@@ -40,12 +40,12 @@ export class Database {
   vendors: Vendor[];
 
   products: Product[];
-  searchableObjects:Array<searchable>;
   //Addresses : Address[];
   //cities: string[];
   //district: string[];
  // countries: string[];
   //zipcodes: string[];
+  searchItem : searchable[];
   http:Http;
 
   
@@ -63,7 +63,7 @@ export class Database {
       this.wishproducts = new Array<Product>();
       this.orders = new Array<OrderData>();
       this.filterTypes = new Array<any>();
-      this.searchableObjects= new Array<searchable>();
+      this.searchItem = new Array<searchable>();
       // this.cities = new Array<string>();
       // this.district = new Array<string>();
       // this.countries = new Array<string>();
@@ -108,6 +108,14 @@ export class Database {
     
  
     
+  }
+
+  getCategoryById(id:any){
+    for(let i= 0 ; i<this.categories.length ; i++ ){
+      if(id==this.categories[i].id){
+        return this.categories[i];
+      }
+    }
   }
 
   SaveAll(): void{

@@ -35,6 +35,7 @@ export class ProductPage {
   db: Database;
   reviews:Array<review>;
   reviewsReady:Boolean=false;
+  pageReady:Boolean=false;
   constructor(public app : App 
     , public navCtrl: NavController
     , public navParams: NavParams
@@ -43,15 +44,28 @@ export class ProductPage {
   ) {
     this.changeView('0');
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
-    this.product = this.navParams.get('data');
-    this.reviews = new Array();
-    this.getReviews().then(data=>{
-      this.reviewsReady=true;
-    });
+    let tempProd = this.navParams.get('data');
+    if(tempProd != undefined){
+      this.product = tempProd;
+      this.pageReady = true;
+      this.reviews = new Array();
+      this.getReviews().then(data=>{
+        this.reviewsReady=true;
+        console.log(this.product);
+      });
+    }else{
+      console.log(this.navParams.get('id'))
+      this.prodProv.getproductById(this.navParams.get('id')).then(data=>{
+        this.product = data;
+        this.pageReady = true;
+       
+      })
+    }
+  
     
     //this.cart.clear();
     //this.specific_item = this.navParams.get('product');
-    console.log(this.product);
+   
   /*
     if (this.product.colors.length > 0) {
       this.clearColor(1);

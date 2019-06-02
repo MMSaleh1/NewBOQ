@@ -1,3 +1,4 @@
+import { searchable } from './../search/search';
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
@@ -230,6 +231,15 @@ export class CategoryProvider {
       products.push(...<Array<Product>>cate.children);
       return products
     }
+
+  }
+
+  getSearchableCategories(categories:Array<Category>){
+    let searchableCats = new Array<searchable>();
+    for(let i =0 ; i<categories.length; i++){
+      searchableCats.push(new searchable(categories[i].name,'SubCateListPage',categories[i].id))
+    }
+    return searchableCats;
 
   }
 

@@ -64,6 +64,22 @@ export class WelcomePage {
 
     
   }
+
+  public async getUserData():Promise<any>{
+
+    return new Promise((resolve)=>{
+      this.storage.get('user').then(data=>{
+        console.log(data)
+        resolve(data);
+        
+      },err=>{
+        resolve(undefined);
+        console.log(err);
+      })
+    })
+   
+  }
+
   
   ionViewDidLoad() {
     console.log('ionViewDidLoad WelcomePage');
@@ -75,8 +91,6 @@ export class WelcomePage {
       console.log(this.db.categories);
       this.loadProgress=50;
       console.log(this.loadProgress);
-      this.db.searchableObjects = this.searchProv.setSearchbleData();
-      console.log(this.db.searchableObjects);
       this.ready = true;
       this.db.vendors = await this.catProv.getVendors();
       let data = await this.getUserData();
@@ -91,6 +105,9 @@ export class WelcomePage {
         
           this.db = Database.getInstance();
           this.userData.Addresses = await this.userProv.getAddress(this.userData.id);
+          this.db.searchItem = await this.searchProv.getSearchableDate();
+          this.db.searchItem.push(...this.catProv.getSearchableCategories(this.db.categories));
+          console.log(this.db.searchItem);
           console.log(this.userData.Addresses);
            this.navCtrl.setRoot('TabsPage');
 
@@ -117,20 +134,6 @@ export class WelcomePage {
 
 
 
-  public async getUserData():Promise<any>{
-
-    return new Promise((resolve)=>{
-      this.storage.get('user').then(data=>{
-        console.log(data)
-        resolve(data);
-        
-      },err=>{
-        resolve(undefined);
-        console.log(err);
-      })
-    })
-   
-  }
-
+  
   
 }

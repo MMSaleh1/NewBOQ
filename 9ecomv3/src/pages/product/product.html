@@ -6,6 +6,7 @@
 -->
 <ion-header>
   <ion-navbar>
+    <div *ngIf="pageReady">
     <button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -24,11 +25,14 @@
       -->
 
     </ion-buttons>
+  </div>
   </ion-navbar>
+
 </ion-header>
 
 
 <ion-content class="page-product">
+  <div *ngIf="pageReady">
   <ion-slides #sliders class="product-slider" pager>
     <ion-slide pager = "true" parallax = "true">
       <div class="product-wrapper">
@@ -134,8 +138,10 @@
     </div>
 
   </div>
+</div>
 </ion-content>
 <ion-footer>
+    <div *ngIf="pageReady">
   <div class="footer">
     <div class="button-left">
       <button ion-button full clear (tap)="quantityPopOver()">{{currentQty}}</button>
@@ -147,4 +153,5 @@
       <button ion-button full clear (tap)="add2Cart()">Add to Cart</button>
     </div> 
     </div>
+  </div>
 </ion-footer>
