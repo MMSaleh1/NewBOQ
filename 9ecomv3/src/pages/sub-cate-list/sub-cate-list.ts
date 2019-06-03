@@ -169,13 +169,14 @@ export class SubCateListPage {
 
   scrollFunction($event){
     console.log($event);
-    this.prodProvider.pagingProductCates(this.category.id,this.results[0].id,10).then(data=>{
+    this.prodProvider.pagingProductCates(this.category.id,this.results[this.results.length-1].id,10).then(data=>{
+     // console.log
       if(data.length == 0){
         $event.complete();
         this.hasProds=false
 
       }else{
-        this.results.push(data);
+        this.results.push(...data);
         $event.complete();
       }
    

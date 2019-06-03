@@ -53,7 +53,7 @@
 
   <!-- <ion-list *ngSwitchCase="'1'" > -->
     <div class="scroll-container" *ngIf="ready">
-      <ion-scroll scrollY="true" class="scroll-list">
+      <!-- <ion-scroll scrollY="true" class="scroll-list"> -->
     <ion-list>
     <ion-item class="cart-list-item" *ngFor="let product of results">
       <ion-thumbnail item-left class="item-thumbnail"  (tap)="toProduct(product)"> 
@@ -77,7 +77,7 @@
      
     </ion-item>
   </ion-list>
-</ion-scroll>
+<!-- </ion-scroll> -->
 
 <ion-infinite-scroll (ionInfinite)="scrollFunction($event)" *ngIf="hasProds">
   <ion-infinite-scroll-content

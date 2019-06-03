@@ -23,7 +23,7 @@
     <button *ngIf="hasCart()" ion-button round  class="button-right" (tap)="placeOrder()"><ion-icon name="ios-cart"></ion-icon></button>
     
     <div class="scroll-container" *ngIf="ready">
-      <ion-scroll scrollY="true" class="scroll-list">
+      <!-- <ion-scroll scrollY="true" class="scroll-list"> -->
         <ion-list>
         <ion-item class="cart-list-item" *ngFor="let product of resultsProd">
           <ion-thumbnail item-left class="item-thumbnail"  (tap)="toProduct(product)"> 
@@ -47,7 +47,7 @@
        
         </ion-item>
       </ion-list>
-    </ion-scroll>
+    <!-- </ion-scroll> -->
 
     <ion-infinite-scroll (ionInfinite)="scrollFunction($event)" *ngIf="hasProds">
       <ion-infinite-scroll-content
